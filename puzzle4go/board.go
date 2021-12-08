@@ -23,27 +23,18 @@ func newBoard(input []string) board {
 
 func (b board) isWinner() bool {
 
-	for _, r := range b.rows {
-		isRowWinner := true
-		for i := range r {
-			if !r[i].selected {
-				isRowWinner = false
-				break
-			}
-		}
-		if isRowWinner {
-			return true
-		}
-	}
-
 	for i := range b.rows {
 		isColumnWinner := true
+		isRowWinner := true
 		for l := range b.rows[i] {
+			if !b.rows[i][l].selected {
+				isRowWinner = false
+			}
 			if !b.rows[l][i].selected {
 				isColumnWinner = false
 			}
 		}
-		if isColumnWinner {
+		if isColumnWinner || isRowWinner {
 			return true
 		}
 	}

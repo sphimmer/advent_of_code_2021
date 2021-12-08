@@ -20,7 +20,7 @@ func TestNewBoard(t *testing.T) {
 func TestSelectCell(t *testing.T) {
 	entries := []string{"22 13 17 11  0", " 8  2 23  4 24", "21 9 14 16 7", "6 10 3 18 5", "1 12 20 15 19"}
 	b := newBoard(entries)
-	b = b.selectCells("13")
+	b.selectCells("13")
 	if !b.rows[0][1].selected {
 		t.Errorf("Expected cell selected to be true but got %v", b.rows[0][1].selected)
 	}

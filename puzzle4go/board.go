@@ -50,7 +50,7 @@ func (b board) isWinner() bool {
 	return false
 }
 
-func (b board) selectCells(number string) board {
+func (b board) selectCells(number string) {
 	for _, r := range b.rows {
 		for i := range r {
 			if r[i].value == number {
@@ -58,5 +58,4 @@ func (b board) selectCells(number string) board {
 			}
 		}
 	}
-	return b
 }

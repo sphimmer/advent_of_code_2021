@@ -9,23 +9,23 @@ import (
 )
 
 func main() {
-	boards, entries := buildBoardsAndGetEntries()
-	solvePart1(boards, entries)
-	solvePart2(boards, entries)
+	solvePart1()
+	solvePart2()
 }
 
-func solvePart2(boards []board, entries []string) {
-	winners := playBingo(boards, entries, false)
+func solvePart2() {
+	boards, entries := buildBoardsAndGetEntries()
+	winners := playBingo(boards, entries)
 	lastCall, err := strconv.Atoi(winners[len(winners)-1].lastCalledNum)
 	if err != nil {
 		fmt.Printf("Error: %v", err)
 	}
-	fmt.Println(lastCall)
 	fmt.Println("Part 2 Answer: ", calculateScore(winners[len(winners)-1].Board, lastCall))
 }
 
-func solvePart1(boards []board, entries []string) {
-	winners := playBingo(boards, entries, true)
+func solvePart1() {
+	boards, entries := buildBoardsAndGetEntries()
+	winners := playBingo(boards, entries)
 	lastCall, err := strconv.Atoi(winners[0].lastCalledNum)
 	if err != nil {
 		fmt.Printf("Error: %v", err)
@@ -51,24 +51,7 @@ func calculateScore(b board, lastCall int) int {
 	return sum * lastCall
 }
 
-type winner struct {
-	id            int
-	Board         board
-	lastCalledNum string
-}
-
-func winnersContain(winners []winner, id int) bool {
-	result := false
-	for _, w := range winners {
-		if w.id == id {
-			result = true
-			break
-		}
-	}
-	return result
-}
-
-func playBingo(boards []board, entries []string, oneWinner bool) []winner {
+func playBingo(boards []board, entries []string) []winner {
 	winners := []winner{}
 	for _, e := range entries {
 		for b := range boards {
@@ -76,9 +59,6 @@ func playBingo(boards []board, entries []string, oneWinner bool) []winner {
 				boards[b].selectCells(e)
 				if boards[b].isWinner() {
 					winners = append(winners, winner{id: b, Board: boards[b], lastCalledNum: e})
-					if oneWinner {
-						return winners
-					}
 				}
 			}
 		}

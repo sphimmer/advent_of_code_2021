@@ -43,11 +43,9 @@ def drawStraightLine(start: list, end: list, map: list):
     return map
 
 def drawDiagnolLine(start: list, end: list, map: list):
-    minX = start[0] if start[0] < end[0] else end[0]
     minY = start[1] if start[1] < end[1] else end[1]
     maxX = start[0] if start[0] > end[0] else end[0]
     maxY = start[1] if start[1] > end[1] else end[1]
-    diffX = maxX - minX 
     diffY = maxY - minY
     # print(diffX, diffY)
     if len(map) < maxY+1:

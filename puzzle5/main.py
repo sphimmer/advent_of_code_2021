@@ -65,7 +65,6 @@ def part1(map: list[list[int]], thermalLines: list[str]) -> int:
         for i in range(len(end)):
             end[i] = int(end[i])
         if start[0] == end[0] or start[1] == end[1]:
-            
             map = drawStraightLine(start, end, map)
     count = 0
     for y in map:
@@ -85,7 +84,6 @@ def part2(map: list[list[int]], thermalLines: list[str]) -> int:
         for i in range(len(end)):
             end[i] = int(end[i])
         if start[0] == end[0] or start[1] == end[1]:
-            
             map = drawStraightLine(start, end, map)
         else:
             map = drawDiagnolLine(start, end, map)
